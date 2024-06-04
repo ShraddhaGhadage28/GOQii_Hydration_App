@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		925B2DF42C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925B2DF32C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift */; };
 		925B2DF62C0E1007001E5D5E /* UserDetails+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925B2DF52C0E1007001E5D5E /* UserDetails+CoreDataProperties.swift */; };
-		925B2DF82C0E1A6A001E5D5E /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925B2DF72C0E1A6A001E5D5E /* DatabaseManager.swift */; };
+		925B2DF82C0E1A6A001E5D5E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925B2DF72C0E1A6A001E5D5E /* UserModel.swift */; };
 		92C400A22C0DC161004D3180 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400A12C0DC161004D3180 /* AppDelegate.swift */; };
 		92C400A42C0DC161004D3180 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400A32C0DC161004D3180 /* SceneDelegate.swift */; };
 		92C400A62C0DC161004D3180 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400A52C0DC161004D3180 /* ViewController.swift */; };
@@ -17,13 +17,12 @@
 		92C400AC2C0DC161004D3180 /* GOQii_HydrationApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92C400AA2C0DC161004D3180 /* GOQii_HydrationApp.xcdatamodeld */; };
 		92C400AE2C0DC163004D3180 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C400AD2C0DC163004D3180 /* Assets.xcassets */; };
 		92C400B12C0DC163004D3180 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 92C400B02C0DC163004D3180 /* Base */; };
-		92C400B92C0DC698004D3180 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400B82C0DC698004D3180 /* CircularProgressBarView.swift */; };
 		92C400BB2C0DC7CC004D3180 /* WaterLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400BA2C0DC7CC004D3180 /* WaterLevelViewController.swift */; };
 		92C400BD2C0DDB38004D3180 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400BC2C0DDB38004D3180 /* SettingViewController.swift */; };
 		92C400BF2C0DE46A004D3180 /* WaterWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400BE2C0DE46A004D3180 /* WaterWaveView.swift */; };
 		92C400C12C0DE8C7004D3180 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400C02C0DE8C7004D3180 /* UIColor+Extention.swift */; };
 		92C400C32C0DF664004D3180 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400C22C0DF664004D3180 /* HistoryViewController.swift */; };
-		92C400C52C0DF6F4004D3180 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400C42C0DF6F4004D3180 /* SaveData.swift */; };
+		92C400C52C0DF6F4004D3180 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400C42C0DF6F4004D3180 /* DatabaseHelper.swift */; };
 		92C400C82C0DF790004D3180 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400C62C0DF790004D3180 /* HistoryTableViewCell.swift */; };
 		92C400C92C0DF790004D3180 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C400C72C0DF790004D3180 /* HistoryTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -31,7 +30,7 @@
 /* Begin PBXFileReference section */
 		925B2DF32C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDetails+CoreDataClass.swift"; sourceTree = "<group>"; };
 		925B2DF52C0E1007001E5D5E /* UserDetails+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDetails+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		925B2DF72C0E1A6A001E5D5E /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		925B2DF72C0E1A6A001E5D5E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		92C4009E2C0DC161004D3180 /* GOQii_HydrationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GOQii_HydrationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C400A12C0DC161004D3180 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C400A32C0DC161004D3180 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,13 +40,12 @@
 		92C400AD2C0DC163004D3180 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92C400B02C0DC163004D3180 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92C400B22C0DC163004D3180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92C400B82C0DC698004D3180 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		92C400BA2C0DC7CC004D3180 /* WaterLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelViewController.swift; sourceTree = "<group>"; };
 		92C400BC2C0DDB38004D3180 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		92C400BE2C0DE46A004D3180 /* WaterWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterWaveView.swift; sourceTree = "<group>"; };
 		92C400C02C0DE8C7004D3180 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		92C400C22C0DF664004D3180 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		92C400C42C0DF6F4004D3180 /* SaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
+		92C400C42C0DF6F4004D3180 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		92C400C62C0DF790004D3180 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		92C400C72C0DF790004D3180 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,28 +80,91 @@
 		92C400A02C0DC161004D3180 /* GOQii_HydrationApp */ = {
 			isa = PBXGroup;
 			children = (
-				925B2DF52C0E1007001E5D5E /* UserDetails+CoreDataProperties.swift */,
-				925B2DF32C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift */,
+				92D428182C0F0FBB00A61151 /* Model */,
+				92D428172C0F0FB800A61151 /* View */,
+				92D428162C0F0FB400A61151 /* Controller */,
+				92D4281B2C0F108900A61151 /* Extensions */,
+				92D428152C0F0FAC00A61151 /* Utilities */,
+				92D4281C2C0F109400A61151 /* DatabaseHelper */,
 				92C400A12C0DC161004D3180 /* AppDelegate.swift */,
 				92C400A32C0DC161004D3180 /* SceneDelegate.swift */,
-				92C400A52C0DC161004D3180 /* ViewController.swift */,
-				92C400BA2C0DC7CC004D3180 /* WaterLevelViewController.swift */,
-				92C400BC2C0DDB38004D3180 /* SettingViewController.swift */,
-				92C400B82C0DC698004D3180 /* CircularProgressBarView.swift */,
-				92C400BE2C0DE46A004D3180 /* WaterWaveView.swift */,
-				92C400C22C0DF664004D3180 /* HistoryViewController.swift */,
-				92C400C42C0DF6F4004D3180 /* SaveData.swift */,
-				925B2DF72C0E1A6A001E5D5E /* DatabaseManager.swift */,
-				92C400C02C0DE8C7004D3180 /* UIColor+Extention.swift */,
-				92C400C62C0DF790004D3180 /* HistoryTableViewCell.swift */,
-				92C400C72C0DF790004D3180 /* HistoryTableViewCell.xib */,
-				92C400A72C0DC161004D3180 /* Main.storyboard */,
 				92C400AD2C0DC163004D3180 /* Assets.xcassets */,
 				92C400AF2C0DC163004D3180 /* LaunchScreen.storyboard */,
 				92C400B22C0DC163004D3180 /* Info.plist */,
 				92C400AA2C0DC161004D3180 /* GOQii_HydrationApp.xcdatamodeld */,
 			);
 			path = GOQii_HydrationApp;
+			sourceTree = "<group>";
+		};
+		92D428152C0F0FAC00A61151 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				92C400BE2C0DE46A004D3180 /* WaterWaveView.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		92D428162C0F0FB400A61151 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92C400A52C0DC161004D3180 /* ViewController.swift */,
+				92C400BA2C0DC7CC004D3180 /* WaterLevelViewController.swift */,
+				92C400BC2C0DDB38004D3180 /* SettingViewController.swift */,
+				92C400C22C0DF664004D3180 /* HistoryViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		92D428172C0F0FB800A61151 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92D4281A2C0F104F00A61151 /* Storyboard */,
+				92D428192C0F102800A61151 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92D428182C0F0FBB00A61151 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				925B2DF72C0E1A6A001E5D5E /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92D428192C0F102800A61151 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				92C400C72C0DF790004D3180 /* HistoryTableViewCell.xib */,
+				92C400C62C0DF790004D3180 /* HistoryTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		92D4281A2C0F104F00A61151 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				92C400A72C0DC161004D3180 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		92D4281B2C0F108900A61151 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				92C400C02C0DE8C7004D3180 /* UIColor+Extention.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		92D4281C2C0F109400A61151 /* DatabaseHelper */ = {
+			isa = PBXGroup;
+			children = (
+				92C400C42C0DF6F4004D3180 /* DatabaseHelper.swift */,
+				925B2DF52C0E1007001E5D5E /* UserDetails+CoreDataProperties.swift */,
+				925B2DF32C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift */,
+			);
+			path = DatabaseHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,10 +241,10 @@
 			files = (
 				92C400A62C0DC161004D3180 /* ViewController.swift in Sources */,
 				92C400A22C0DC161004D3180 /* AppDelegate.swift in Sources */,
-				925B2DF82C0E1A6A001E5D5E /* DatabaseManager.swift in Sources */,
+				925B2DF82C0E1A6A001E5D5E /* UserModel.swift in Sources */,
 				92C400AC2C0DC161004D3180 /* GOQii_HydrationApp.xcdatamodeld in Sources */,
 				925B2DF42C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift in Sources */,
-				92C400C52C0DF6F4004D3180 /* SaveData.swift in Sources */,
+				92C400C52C0DF6F4004D3180 /* DatabaseHelper.swift in Sources */,
 				92C400C32C0DF664004D3180 /* HistoryViewController.swift in Sources */,
 				92C400C12C0DE8C7004D3180 /* UIColor+Extention.swift in Sources */,
 				92C400C82C0DF790004D3180 /* HistoryTableViewCell.swift in Sources */,
@@ -191,7 +252,6 @@
 				92C400A42C0DC161004D3180 /* SceneDelegate.swift in Sources */,
 				92C400BD2C0DDB38004D3180 /* SettingViewController.swift in Sources */,
 				925B2DF62C0E1007001E5D5E /* UserDetails+CoreDataProperties.swift in Sources */,
-				92C400B92C0DC698004D3180 /* CircularProgressBarView.swift in Sources */,
 				92C400BF2C0DE46A004D3180 /* WaterWaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

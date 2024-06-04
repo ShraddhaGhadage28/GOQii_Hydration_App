@@ -10,16 +10,15 @@ import Foundation
 import UIKit
 import CoreData
 
-class SaveData {
-    static let shared = SaveData()
+class DatabaseHelper {
+    static let shared = DatabaseHelper()
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //save data
+    // MARK: save data
     func save(entityName: String, data: UserModel) {
             var context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
             if #available(iOS 10.0, *) {
-                context = SaveData.appDelegate.persistentContainer.viewContext
+                context = DatabaseHelper.appDelegate.persistentContainer.viewContext
             } else {
-                // Fallback on earlier versions
             }
             guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
                 print("Entity \(entityName) not found!")
@@ -30,6 +29,7 @@ class SaveData {
             newUser.date = data.date
             newUser.waterIntake = data.waterIntake
             do {
+                /// save the specific UserDetails 
                 try context.save()
                 print("Data Saved")
             } catch {
@@ -37,13 +37,12 @@ class SaveData {
             }
         }
     
-    //fetch data
+    // MARK: fetch data
     public func fetchData(entityName: String) -> [UserDetails]? {
            var context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
            if #available(iOS 10.0, *) {
-               context = SaveData.appDelegate.persistentContainer.viewContext
+               context = DatabaseHelper.appDelegate.persistentContainer.viewContext
            } else {
-               // Fallback on earlier versions
            }
            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
            request.returnsObjectsAsFaults = false
@@ -56,11 +55,11 @@ class SaveData {
            return nil
        }
     
-    //Delete data
+    // MARK: Delete data
     public func deleteData(at index: Int,users:[UserDetails]) {
-           let context = SaveData.appDelegate.persistentContainer.viewContext
+           let context = DatabaseHelper.appDelegate.persistentContainer.viewContext
            
-           // Fetch the specific UserDetails object to delete
+           /// Fetch the specific UserDetails object to delete
            let userToDelete = users[index]
            context.delete(userToDelete)
            

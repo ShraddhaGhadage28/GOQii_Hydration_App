@@ -9,34 +9,27 @@ import UIKit
 import CoreData
 
 class HistoryViewController: UIViewController {
-    @IBOutlet weak var historyTableView: UITableView!
-    var users: [UserDetails]? = []
-    var manager = SaveData()
     
+    // MARK: - IBOutlets
+    @IBOutlet weak var historyTableView: UITableView!
+    
+    // MARK: - Variable Declarations
+    var users: [UserDetails]? = []
+    var manager = DatabaseHelper()
+    var selectedTarget :String?
+    
+    // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.historyTableView.register(UINib(nibName: "HistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryTableViewCell")
-       
     }
     override func viewWillAppear(_ animated: Bool) {
         users = manager.fetchData(entityName: "UserDetails") 
         historyTableView.reloadData()
     }
-    public func deleteData(at index: Int) {
-            let context = SaveData.appDelegate.persistentContainer.viewContext
-            
-            // Fetch the specific UserDetails object to delete
-        guard let userToDelete = users?[index] else { return  }
-            context.delete(userToDelete)
-            
-            do {
-                try context.save()
-            } catch {
-                print("Failed to save context after deletion: \(error)")
-            }
-        }
 }
 
+// MARK: - UITableViewDelegate & UITableViewDataSource
 extension HistoryViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users?.count ?? 0
@@ -54,36 +47,42 @@ extension HistoryViewController: UITableViewDelegate,UITableViewDataSource {
         cell.waterIntakeLabel.text = "\(usersData?.waterIntake ?? "0") ml"
         return cell
     }
-   
-     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            return true // Allow all rows to be editable
-        }
-    /*
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-         if editingStyle == .delete {
-             if let userData = users {
-                 self.users?.remove(at: indexPath.row)
-                 manager.deleteData(at: indexPath.row, users: userData)
-             }
-                 self.historyTableView.reloadData()
-            
-         }
-
-        }*/
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete") {_,_,_ in
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedTarget = self.users?[indexPath.row].waterIntake
+        self.updateAlert(index: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             if let userData = self.users {
                 self.users?.remove(at: indexPath.row)
                 self.manager.deleteData(at: indexPath.row, users: userData)
             }
-                self.historyTableView.reloadData()
         }
-        let update = UIContextualAction(style: .destructive, title: "Update") {_,_,_ in
-        
-        }
-        update.backgroundColor = .blue
-        return UISwipeActionsConfiguration(actions: [delete,update])
+        historyTableView.reloadData()
     }
-   
+    // MARK: - Custom Functions
+    func updateAlert(index:Int) {
+        let alert = UIAlertController(title: "Water Intake", message: "Update Your Intake", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+            textField.text = self.selectedTarget
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self, weak alert] (_) in
+            let textField = alert?.textFields![0]
+            print("Text field: \(textField?.text)")
+            self.users?[index].waterIntake = textField?.text ?? ""
+            do {
+                try DatabaseHelper.appDelegate.persistentContainer.viewContext.save()
+            } catch {}
+            self.selectedTarget = "\(textField?.text ?? "0") ml"
+            historyTableView.reloadData()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 

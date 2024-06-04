@@ -6,14 +6,14 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
-
+    
+    // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
+  
 }
 

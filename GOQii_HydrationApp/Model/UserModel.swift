@@ -11,9 +11,4 @@ struct UserModel {
     let date: Date?
     let waterIntake: String
 }
-class DatabaseManager {
-    func addUserData() {
-        
-    }
-    
-}
+

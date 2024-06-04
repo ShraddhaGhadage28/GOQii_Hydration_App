@@ -12,7 +12,6 @@ import UIKit
 class WaterWaveView: UIView {
 
     
-    //properties
     private let firstLayer = CAShapeLayer()
     private let secondLayer = CAShapeLayer()
     
@@ -24,7 +23,7 @@ class WaterWaveView: UIView {
     private var twoPI: CGFloat = .pi*2
     private var offset:  CGFloat = 0.0
     
-    private let width = UIScreen.main.bounds.width - 100.0//screenWidth*0.5
+    private let width = UIScreen.main.bounds.width - 100.0
     
     var showSinglWave = false
     private var start = false
@@ -48,7 +47,7 @@ extension WaterWaveView {
     private func setupViews() {
         bounds = CGRect(x: 0.0, y: 0.0, width: min(width, width), height: min(width, width))
         clipsToBounds = true
-        backgroundColor = .clear//ColorConstants.waterWaveBgColor
+        backgroundColor = .clear
         
         translatesAutoresizingMaskIntoConstraints = false
         layer.masksToBounds = true
@@ -57,8 +56,8 @@ extension WaterWaveView {
         
         waveHeight = 8.0
         
-        firstColor = waterWaveFirstColor// UIColor(red: 181, green: 229, blue: 251, alpha: 1)
-        secondColor = waterWaveSecondColor//UIColor(red: 216, green: 241, blue: 253, alpha: 1)
+        firstColor = waterWaveFirstColor
+        secondColor = waterWaveSecondColor
         
         createFirstLayer()
         
