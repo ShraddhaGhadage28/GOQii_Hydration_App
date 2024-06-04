@@ -32,6 +32,8 @@ class WaterWaveView: UIView {
     var waveHeight: CGFloat = 0.0
      let waterWaveFirstColor = UIColor(hexCode: "#D8F1FD")
      let waterWaveSecondColor = UIColor(hexCode: "#B5E5FB")
+    var waterVal = "Test"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -82,7 +84,7 @@ extension WaterWaveView {
     }
     
     private func createPercentLabel() {
-        percentLabel.font = .boldSystemFont(ofSize: 46)//UIFont.latoBold(ofSize: 46)
+        percentLabel.font = .boldSystemFont(ofSize: 40)//UIFont.latoBold(ofSize: 46)
         percentLabel.textAlignment = .center
         percentLabel.textColor = .white
         percentLabel.text = ""
@@ -93,10 +95,10 @@ extension WaterWaveView {
 
     }
     
-    func setUpProgress(_ pr: CGFloat) {
+    func setUpProgress(_ pr: CGFloat, waterValue: String? = nil) {
         
         progress = pr
-        percentLabel.text = String(format: "%ld%%", NSNumber(value: Float(pr*100)).intValue)
+        percentLabel.text = waterValue
         let top: CGFloat = pr * bounds.size.height
         
         firstLayer.setValue(width-top, forKeyPath: "position.y")

@@ -14,15 +14,13 @@ class WaterLevelViewController: UIViewController {
     @IBOutlet weak var glassBtn: UIButton!
     @IBOutlet weak var bottleBtn: UIButton!
     
-    // MARK: - Variable Declarations
-    var screenWidth = UIScreen.main.bounds.width
-    lazy var waveView = WaterWaveView()
+    // MARK: - Global Variable Declarations
     var users: [UserDetails]? = []
     var count : Int = 0
     var goal: String = "0"
-    private let manager = DatabaseHelper()
+    lazy var waveView = WaterWaveView()
     
-    // MARK: - Life cycle methods
+    // MARK: - View Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWaveView()
@@ -34,8 +32,42 @@ class WaterLevelViewController: UIViewController {
         waterIntakeStatusLabel.text = "\(count) ml out of \(goal)"
         setupNotification()
     }
-    
-    // MARK: IBAction
+}
+
+// MARK: - Self Defined Function
+extension WaterLevelViewController {
+    fileprivate func checkIfTargetAchieved() {
+        guard let newGoal = Int(goal.components(separatedBy: " ").first ?? "0" ) else { return  }
+        if count >= newGoal {
+            let alert = UIAlertController(title: "Congratulations", message: "You Achived Your Goal", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                alert?.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+// MARK: - Wave View
+extension WaterLevelViewController {
+    fileprivate func setupWaveView() {
+        waterView.addSubview(waveView)
+        waveView.progress = 0.1
+        waveView.setUpProgress(waveView.progress, waterValue: "Please select intake")
+        waveView.clipsToBounds = true
+        NSLayoutConstraint.activate([
+            waveView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            waveView.heightAnchor.constraint(equalToConstant: waveView.progress),
+            waveView.centerXAnchor.constraint(equalTo: waterView.centerXAnchor),
+            waveView.topAnchor.constraint(equalTo: waterView.topAnchor,constant: 0),
+            waveView.bottomAnchor.constraint(equalTo: waterView.bottomAnchor, constant: 0)
+        ])
+        self.view.layoutIfNeeded()
+    }
+}
+
+// MARK: - Ibaction Tapped Event
+extension WaterLevelViewController {
     @IBAction func glassBottleTap(_ sender: UIButton) {
         if sender.tag == 1 {
             self.count = count + 250
@@ -46,54 +78,28 @@ class WaterLevelViewController: UIViewController {
             waterIntakeStatusLabel.text = "\(count) ml out of \(goal)"
         }
         UserDefaults.standard.set(count, forKey: "count")
+        waveView.setUpProgress(0, waterValue: "\(count)")
+        
         checkIfTargetAchieved()
     }
-   
+    
     @IBAction func saveWaterData(_ sender: UIButton) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        let strDate = dateFormatter.string(from: Date())
-        let modifiedDate = dateFormatter.date(from: strDate)
-        let data = manager.fetchData(entityName: "UserDetails")
+        let strDate = Date().getStringFromDate(dateFormat: DateFormaterStyle.ddMMMYYYY.rawValue)
+        let modifiedDate = strDate.getDateFromString(dateFormat: DateFormaterStyle.ddMMMYYYY.rawValue)
+        let data = DatabaseHelper.shared.fetchData(entityName: "UserDetails")
         if data?.last?.date == modifiedDate {
             let word = waterIntakeStatusLabel.text?.components(separatedBy: " ").first
             data?.last?.waterIntake = word
             do {
-                try DatabaseHelper.appDelegate.persistentContainer.viewContext.save()
+                try DatabaseHelper.shared.persistentContainer.viewContext.save()
             } catch { }
         } else {
             let user = UserModel(id: "\(data?.count ?? 0)" , date: modifiedDate, waterIntake: "\(count)")
-            manager.save(entityName: "UserDetails", data: user)
+            DatabaseHelper.shared.save(entityName: "UserDetails", data: user)
         }
     }
-    // MARK: custom function
-    func checkIfTargetAchieved() {
-        guard let newGoal = Int(goal.components(separatedBy: " ").first ?? "0" ) else { return  }
-        if count >= newGoal {
-            let alert = UIAlertController(title: "Congratulations", message: "You Achived Your Goal", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-                alert?.dismiss(animated: true)
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-   
-    func setupWaveView() {
-        waterView.addSubview(waveView)
-        waveView.progress = 0.1
-        waveView.setUpProgress(waveView.progress)
-        waveView.clipsToBounds = true
-        NSLayoutConstraint.activate([
-            waveView.widthAnchor.constraint(equalToConstant: screenWidth),
-            waveView.heightAnchor.constraint(equalToConstant: waveView.progress),
-            waveView.centerXAnchor.constraint(equalTo: waterView.centerXAnchor),
-            waveView.topAnchor.constraint(equalTo: waterView.topAnchor,constant: 0),
-            waveView.bottomAnchor.constraint(equalTo: waterView.bottomAnchor, constant: 0)
-        ])
-        self.view.layoutIfNeeded()
-    }
-    
 }
+
 // MARK: - Localized Notifications
 extension WaterLevelViewController {
     func setupNotification() {
@@ -131,5 +137,25 @@ extension WaterLevelViewController {
             }
         }
     }
+}
+
+extension Date {
+    func getStringFromDate(dateFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: Date())
+    }
     
+}
+
+extension String {
+    func getDateFromString(dateFormat: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.date(from: self) ?? Date()
+    }
+}
+
+enum DateFormaterStyle: String {
+    case ddMMMYYYY = "dd MMM yyyy"
 }

@@ -23,9 +23,11 @@ class SettingViewController: UIViewController {
             goalLabel.text = target
         }
     }
-    
-    // MARK: - Custom Functions
-    func setTapGesture() {
+}
+
+// MARK: - Custom Functions
+extension SettingViewController {
+   fileprivate func setTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goalViewTapped(_:)))
         goalView.addGestureRecognizer(tapGesture)
     }
@@ -38,7 +40,6 @@ class SettingViewController: UIViewController {
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            print("Text field: \(textField?.text)")
             self.goalLabel.text = "\(textField?.text ?? "0") ml"
             UserDefaults.standard.set(self.goalLabel.text, forKey: "goal")
         }))

@@ -19,4 +19,9 @@ class HistoryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func setup(waterContent: UserDetails?) {
+        self.dateLabel.text = (waterContent?.date ?? Date()).getStringFromDate(dateFormat: DateFormaterStyle.ddMMMYYYY.rawValue)
+        self.waterIntakeLabel.text = "\(waterContent?.waterIntake ?? "0") ml"
+    }
+    
 }

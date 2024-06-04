@@ -15,7 +15,6 @@ class HistoryViewController: UIViewController {
     
     // MARK: - Variable Declarations
     var users: [UserDetails]? = []
-    var manager = DatabaseHelper()
     var selectedTarget :String?
     
     // MARK: - Life cycle methods
@@ -24,13 +23,13 @@ class HistoryViewController: UIViewController {
         self.historyTableView.register(UINib(nibName: "HistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryTableViewCell")
     }
     override func viewWillAppear(_ animated: Bool) {
-        users = manager.fetchData(entityName: "UserDetails") 
+        users = DatabaseHelper.shared.fetchData(entityName: "UserDetails")
         historyTableView.reloadData()
     }
 }
 
-// MARK: - UITableViewDelegate & UITableViewDataSource
-extension HistoryViewController: UITableViewDelegate,UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension HistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users?.count ?? 0
     }
@@ -39,15 +38,12 @@ extension HistoryViewController: UITableViewDelegate,UITableViewDataSource {
         guard let cell = historyTableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as? HistoryTableViewCell else {
             return UITableViewCell()
         }
-        let usersData = users?[indexPath.row]
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        let date = dateFormatter.string(from: usersData?.date ?? Date())
-        cell.dateLabel.text = date
-        cell.waterIntakeLabel.text = "\(usersData?.waterIntake ?? "0") ml"
+        cell.setup(waterContent: users?[indexPath.row])
         return cell
     }
-    
+}
+// MARK: - UITableViewDelegate
+extension HistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -60,13 +56,13 @@ extension HistoryViewController: UITableViewDelegate,UITableViewDataSource {
         if editingStyle == .delete {
             if let userData = self.users {
                 self.users?.remove(at: indexPath.row)
-                self.manager.deleteData(at: indexPath.row, users: userData)
+                DatabaseHelper.shared.deleteData(at: indexPath.row, users: userData)
             }
         }
         historyTableView.reloadData()
     }
     // MARK: - Custom Functions
-    func updateAlert(index:Int) {
+   fileprivate func updateAlert(index:Int) {
         let alert = UIAlertController(title: "Water Intake", message: "Update Your Intake", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.keyboardType = .numberPad
@@ -74,10 +70,9 @@ extension HistoryViewController: UITableViewDelegate,UITableViewDataSource {
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self, weak alert] (_) in
             let textField = alert?.textFields![0]
-            print("Text field: \(textField?.text)")
             self.users?[index].waterIntake = textField?.text ?? ""
             do {
-                try DatabaseHelper.appDelegate.persistentContainer.viewContext.save()
+                try DatabaseHelper.shared.persistentContainer.viewContext.save()
             } catch {}
             self.selectedTarget = "\(textField?.text ?? "0") ml"
             historyTableView.reloadData()
@@ -85,4 +80,5 @@ extension HistoryViewController: UITableViewDelegate,UITableViewDataSource {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
 

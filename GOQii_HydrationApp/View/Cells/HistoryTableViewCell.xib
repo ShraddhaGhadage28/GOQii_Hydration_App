@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,7 +39,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="g4V-uI-pA3" firstAttribute="centerY" secondItem="TMq-Y5-dl4" secondAttribute="centerY" id="02V-iw-AGV"/>
                             <constraint firstItem="kMJ-8z-q6s" firstAttribute="centerY" secondItem="TMq-Y5-dl4" secondAttribute="centerY" id="0Oi-j2-fCn"/>
@@ -57,6 +56,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="TMq-Y5-dl4" secondAttribute="bottom" constant="10" id="HOn-YN-t5b"/>
                     <constraint firstItem="TMq-Y5-dl4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="g9i-Sr-89t"/>
@@ -65,6 +65,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="dateLabel" destination="kMJ-8z-q6s" id="3uo-zu-m2r"/>
                 <outlet property="waterIntakeLabel" destination="mgM-cN-aU1" id="e3z-Ce-Ro2"/>
@@ -74,8 +75,5 @@
     </objects>
     <resources>
         <image name="drop.halffull" catalog="system" width="96" height="128"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
