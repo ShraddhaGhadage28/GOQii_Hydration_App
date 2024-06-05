@@ -42,6 +42,7 @@ extension SettingViewController {
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             self.goalLabel.text = "\(textField?.text ?? "0") ml"
             UserDefaults.standard.set(self.goalLabel.text, forKey: "goal")
+            UserDefaults.standard.synchronize()
         }))
         self.present(alert, animated: true, completion: nil)
     }

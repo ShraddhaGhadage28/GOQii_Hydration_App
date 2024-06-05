@@ -25,6 +25,8 @@
 		92C400C52C0DF6F4004D3180 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400C42C0DF6F4004D3180 /* DatabaseHelper.swift */; };
 		92C400C82C0DF790004D3180 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C400C62C0DF790004D3180 /* HistoryTableViewCell.swift */; };
 		92C400C92C0DF790004D3180 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C400C72C0DF790004D3180 /* HistoryTableViewCell.xib */; };
+		92D4281E2C0F4B8A00A61151 /* WaterLevelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4281D2C0F4B8A00A61151 /* WaterLevelViewModel.swift */; };
+		92D428202C0F4D0900A61151 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4281F2C0F4D0900A61151 /* Extention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		92C400C42C0DF6F4004D3180 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		92C400C62C0DF790004D3180 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		92C400C72C0DF790004D3180 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		92D4281D2C0F4B8A00A61151 /* WaterLevelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelViewModel.swift; sourceTree = "<group>"; };
+		92D4281F2C0F4D0900A61151 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +86,7 @@
 			children = (
 				92D428182C0F0FBB00A61151 /* Model */,
 				92D428172C0F0FB800A61151 /* View */,
-				92D428162C0F0FB400A61151 /* Controller */,
+				92D428212C0F505000A61151 /* ViewModel */,
 				92D4281B2C0F108900A61151 /* Extensions */,
 				92D428152C0F0FAC00A61151 /* Utilities */,
 				92D4281C2C0F109400A61151 /* DatabaseHelper */,
@@ -118,6 +122,7 @@
 		92D428172C0F0FB800A61151 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92D428162C0F0FB400A61151 /* Controller */,
 				92D4281A2C0F104F00A61151 /* Storyboard */,
 				92D428192C0F102800A61151 /* Cells */,
 			);
@@ -153,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				92C400C02C0DE8C7004D3180 /* UIColor+Extention.swift */,
+				92D4281F2C0F4D0900A61151 /* Extention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,6 +171,14 @@
 				925B2DF32C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift */,
 			);
 			path = DatabaseHelper;
+			sourceTree = "<group>";
+		};
+		92D428212C0F505000A61151 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92D4281D2C0F4B8A00A61151 /* WaterLevelViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,7 +260,9 @@
 				925B2DF42C0E0FF2001E5D5E /* UserDetails+CoreDataClass.swift in Sources */,
 				92C400C52C0DF6F4004D3180 /* DatabaseHelper.swift in Sources */,
 				92C400C32C0DF664004D3180 /* HistoryViewController.swift in Sources */,
+				92D428202C0F4D0900A61151 /* Extention.swift in Sources */,
 				92C400C12C0DE8C7004D3180 /* UIColor+Extention.swift in Sources */,
+				92D4281E2C0F4B8A00A61151 /* WaterLevelViewModel.swift in Sources */,
 				92C400C82C0DF790004D3180 /* HistoryTableViewCell.swift in Sources */,
 				92C400BB2C0DC7CC004D3180 /* WaterLevelViewController.swift in Sources */,
 				92C400A42C0DC161004D3180 /* SceneDelegate.swift in Sources */,

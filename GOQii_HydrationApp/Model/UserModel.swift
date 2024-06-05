@@ -11,4 +11,6 @@ struct UserModel {
     let date: Date?
     let waterIntake: String
 }
-
+enum DateFormaterStyle: String {
+    case ddMMMYYYY = "dd MMM yyyy"
+}

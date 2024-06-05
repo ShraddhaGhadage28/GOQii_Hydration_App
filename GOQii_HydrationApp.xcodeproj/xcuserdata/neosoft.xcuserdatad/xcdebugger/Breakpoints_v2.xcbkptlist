@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "295D229C-7BA9-4FAE-9BB4-929D038AB545"
+            uuid = "FE0FA044-C671-4DF5-8A1C-8E52214B8408"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GOQii_HydrationApp/Controller/HistoryViewController.swift"
+            filePath = "GOQii_HydrationApp/View/Cells/HistoryTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "updateAlert(index:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "setup(waterContent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6DB4C638-24DF-4CE6-9301-CF4BD5211183"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GOQii_HydrationApp/Extensions/Extention.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "getStringFromDate(dateFormat:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

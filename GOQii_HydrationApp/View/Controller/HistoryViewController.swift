@@ -54,15 +54,11 @@ extension HistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if let userData = self.users {
-                self.users?.remove(at: indexPath.row)
-                DatabaseHelper.shared.deleteData(at: indexPath.row, users: userData)
-            }
+            deleteAlert(msg: "Do you want to delete Data", index: indexPath.row)
         }
-        historyTableView.reloadData()
     }
     // MARK: - Custom Functions
-   fileprivate func updateAlert(index:Int) {
+    fileprivate func updateAlert(index:Int) {
         let alert = UIAlertController(title: "Water Intake", message: "Update Your Intake", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.keyboardType = .numberPad
@@ -78,6 +74,23 @@ extension HistoryViewController: UITableViewDelegate {
             historyTableView.reloadData()
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    fileprivate func deleteAlert(msg:String,index:Int) {
+        var refreshAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertController.Style.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            if let userData = self.users {
+                self.users?.remove(at: index)
+                DatabaseHelper.shared.deleteData(at: index, users: userData)
+                self.historyTableView.reloadData()
+            }
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            refreshAlert.dismiss(animated: true)
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
     }
 }
 
